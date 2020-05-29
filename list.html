@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+   
+    background-image: url("image/hawaii.jpg");
+
+  background-position: center center;
+
+  background-repeat: no-repeat;
+  
+
+  background-attachment: fixed;
+
+  background-size: cover;
+  
+
+    width: 100%;
+    height: 100%;
+}
+#back{
+    background-color: white;
+    opacity: 0.2;
+position: absolute;
+top: 0;
+right: 0;
+left: 0;
+bottom: 0;
+border-radius: 16px;
+z-index: -6;
+
+}
+#contain{
+    position: relative;
+    width: 800px;
+    height: auto;
+    padding-bottom: 50px;
+
+    border-radius: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    overflow: hidden;
+}
+#box>h1{
+    text-align: center;
+    
+}
+#todo{
+    
+    width: 60%;
+    margin-left: 5px;
+   
+    font-size: 20px;
+font-weight: 600;
+color: #000;
+    border:none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgba(98, 214, 218, 0.7);
+    margin-top: 10px;
+    transition: 1s;
+
+}
+#todo::placeholder{
+    color: black;
+    opacity: 0.8;
+}
+#todo:hover{
+    
+    color: rgb(0, 0, 0);
+    width: 70%;
+    transition: 1s;
+}
+#add{
+    width: 130px;
+    padding: 10px;
+    background-color: #FF5672;
+    color:white;
+    border:none;
+    font-weight: 700;
+    transition: 1s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#add:hover{
+    background-color: rgba(84,57,84,0.7);
+    
+}
+label{
+    display: block;
+    border-bottom: 2px solid black;
+
+    padding: 10px 5px 2px 5px;
+    letter-spacing: 2px;
+    font-weight: 600;
+font-size: 22px;
+font-family: Lato, sans-serif;
+}
+
+ul{
+    position: relative;
+    margin-left: -30px;
+    
+}
+
+span{
+position: absolute;
+width: 27px;
+height: 100%;
+right: 10px;
+top: 0px;
+
+z-index: 15;
+cursor: pointer ;
+}
+
+.one{
+    position: absolute;
+    width: 20px;
+    top: 50%;
+    left: 3px;
+    height: 2px;
+    transform: rotate(45deg);
+    background-color: black;
+    
+}
+.two{
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    top: 50%;
+    left: 3px;
+    transform: rotate(-45deg);
+    background-color: black;
+}
+li{
+    margin-left: -12px;
+    padding-left: 15px;
+    margin-top: 15px;
+    list-style-type: none;
+    color: rgb(115, 255, 0);
+    font-size: 25px;
+    transition: 0.5s;
+z-index: 5;
+background-color: rgb(241, 246, 246,0.3);
+-webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+position: relative;
+display: block;
+
+
+}
+li.checked {
+  background: rgb(175, 172, 172);
+  color: #fff;
+  text-decoration: line-through;
+  padding-left: 35px;
+  transition: 0.5s;
+  
+}
+
+li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 8px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+@media screen and (max-width: 770px) {
+    #contain{
+    
+    width: 90%;
+    height: 100%;
+    
+}
+#add{
+    width: 80px;
+    
+}
+label{
+    font-weight: 400;
+}
+h1,label{
+    font-size: 20px;
+}
+}
+    </style>
+</head>
+<body>
+    <div id="contain">
+        <div id="box">
+            <h1>Welcome to my to do list</h1>
+        
+            <label for="todo">Add Item :</label>
+            <input type="text" placeholder="Add new todo" id="todo"/>
+            <input type="submit" value="Add" id="add"/>
+        
+        <ul id="task">
+            <li class="some">
+                ggg
+                <span class="mouse">
+                    <div class="one"></div>
+                    <div class="two"></div>
+                    
+                </span>
+                
+            </li>
+            <li class="some">
+                hhh
+                <span class="mouse">
+                    <div class="one"></div>
+                    <div class="two"></div>
+                    
+                </span>
+                
+            </li>
+            <li class="some">
+                eee
+                <span class="mouse">
+                    <div class="one"></div>
+                    <div class="two"></div>
+                    
+                </span>
+                
+            </li>
+        </ul>
+        </div>
+        <div id="back"></div>
+
+    </div>
+    
+    <script>
+var task = document.getElementById('task');
+
+var one = document.getElementsByClassName('one');
+var two = document.getElementsByClassName('two');
+
+var todo = document.getElementById('todo');
+var add = document.getElementById('add');
+
+
+
+
+
+
+
+
+
+
+var close =document.getElementsByClassName('mouse');
+var i;
+for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var divg = this.parentElement;
+      divg.style.display = "none";
+    }
+  }
+
+
+
+
+add.addEventListener('click', call);
+
+function call(){
+    if (todo.value==""){
+        alert('fill out the input!')
+        return false;
+    }
+   
+var li = document.createElement('li');
+
+li.className = 'some';
+li.innerHTML=todo.value;
+
+task.appendChild(li);
+var div = document.createElement('span');
+div.className = 'mouse';
+li.appendChild(div);
+
+var un = document.createElement('div');
+un.className='one';
+div.appendChild(un);
+
+var une = document.createElement('div');
+une.className='two';
+div.appendChild(une);
+
+
+
+   
+   for (i = 0; i < close.length; i++) {
+   close[i].onclick = function() {
+     var divg = this.parentElement;
+
+     divg.style.display = "none";
+  
+   }
+ }
+
+ todo.value="";
+
+
+
+}
+
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+
+
+
+
+
+
+  
+
+
+
+    </script>
+</body>
+</html>
